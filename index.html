@@ -11,19 +11,47 @@
 <body>
 	<input id="email" type="email" placeholder="Email">
 	<input id="phone" type="tel" placeholder="Phone">
-	<input id="emailOrPhone" type="email" placeholder="Email or Phone">
+	<input id="emailFieldPrimary" type="email" placeholder="Email or Phone">
+	<input id="phoneFieldPrimary" type="hidden" placeholder="Email or Phone">
 	<script>
-		const emailOrPhone = document.getElementById('emailOrPhone');
-		emailOrPhone.addEventListener("keyup", (event) => {
-			const currentType = emailOrPhone.type;
-			const isNumber = !isNaN(event.target.value)
-			if (!isNumber && currentType !== 'email') {
-				emailOrPhone.setAttribute('type', 'email')
-			} else if (isNumber && currentType !== 'tel') {
-				emailOrPhone.setAttribute('type', 'tel')
+
+		const switchInputs = (currentValue) => {
+			const isNumber = !isNaN(currentValue)
+			if (!isNumber) {
+				phoneFieldPrimary.setAttribute('type', 'hidden')
+				emailFieldPrimary.value = currentValue;
+				emailFieldPrimary.setAttribute('type', 'email')
+				emailFieldPrimary.focus()
+			} else if (isNumber) {
+				emailFieldPrimary.setAttribute('type', 'hidden')
+				phoneFieldPrimary.value = currentValue;
+				phoneFieldPrimary.setAttribute('type', 'tel')
+				phoneFieldPrimary.focus()
 			}
+		}
+
+		emailFieldPrimary.addEventListener("keyup", (event) => {
+			const currentValue = event.target.value;
+			// Default when empty input is email
+			if (!currentValue) {
+				return;
+			}
+
+			switchInputs(currentValue)
 		});
 
+		phoneFieldPrimary.addEventListener("keyup", (event) => {
+			const currentValue = event.target.value;
+			// Default to email field when empty input is email
+			if (!currentValue) {
+				phoneFieldPrimary.setAttribute('type', 'hidden')
+				emailFieldPrimary.value = currentValue;
+				emailFieldPrimary.setAttribute('type', 'email')
+				emailFieldPrimary.focus()
+			}
+
+			switchInputs(currentValue)
+		});
 	</script>
 </body>
 
