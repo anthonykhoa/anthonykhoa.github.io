@@ -15,13 +15,17 @@
 	<input id="phoneFieldPrimary" type="hidden" placeholder="Email or Phone">
 	<script>
 
+		const showEmailField = (currentValue) => {
+			phoneFieldPrimary.setAttribute('type', 'hidden')
+			emailFieldPrimary.setAttribute('type', 'email')
+			emailFieldPrimary.focus()
+			emailFieldPrimary.value = currentValue;
+		}
+
 		const switchInputs = (currentValue) => {
 			const isNumber = !isNaN(currentValue)
 			if (!isNumber) {
-				phoneFieldPrimary.setAttribute('type', 'hidden')
-				emailFieldPrimary.setAttribute('type', 'email')
-				emailFieldPrimary.focus()
-				emailFieldPrimary.value = currentValue;
+				showEmailField(currentValue);
 			} else if (isNumber) {
 				emailFieldPrimary.setAttribute('type', 'hidden')
 				phoneFieldPrimary.setAttribute('type', 'tel')
@@ -44,11 +48,7 @@
 			const currentValue = event.target.value;
 			// Default to email field when empty input is email
 			if (!currentValue) {
-				phoneFieldPrimary.setAttribute('type', 'hidden')
-				emailFieldPrimary.setAttribute('type', 'email')
-				emailFieldPrimary.focus()
-				emailFieldPrimary.value = currentValue;
-
+				showEmailField(currentValue);
 				return;
 			}
 
