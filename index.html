@@ -14,7 +14,7 @@
 	<input id="emailOrPhone" type="email" placeholder="Email or Phone">
 	<script>
 		const emailOrPhone = document.getElementById('emailOrPhone');
-		emailOrPhone.addEventListener("keydown", (event) => {
+		emailOrPhone.addEventListener("keyup", (event) => {
 			const currentType = emailOrPhone.type;
 			const isNumber = !isNaN(event.target.value)
 			if (!isNumber && currentType !== 'email') {
