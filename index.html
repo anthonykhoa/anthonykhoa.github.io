@@ -19,14 +19,14 @@
 			const isNumber = !isNaN(currentValue)
 			if (!isNumber) {
 				phoneFieldPrimary.setAttribute('type', 'hidden')
-				emailFieldPrimary.value = currentValue;
 				emailFieldPrimary.setAttribute('type', 'email')
 				emailFieldPrimary.focus()
+				emailFieldPrimary.value = currentValue;
 			} else if (isNumber) {
 				emailFieldPrimary.setAttribute('type', 'hidden')
-				phoneFieldPrimary.value = currentValue;
 				phoneFieldPrimary.setAttribute('type', 'tel')
 				phoneFieldPrimary.focus()
+				phoneFieldPrimary.value = currentValue;
 			}
 		}
 
@@ -45,10 +45,10 @@
 			// Default to email field when empty input is email
 			if (!currentValue) {
 				phoneFieldPrimary.setAttribute('type', 'hidden')
-				emailFieldPrimary.value = currentValue;
 				emailFieldPrimary.setAttribute('type', 'email')
 				emailFieldPrimary.focus()
-				
+				emailFieldPrimary.value = currentValue;
+
 				return;
 			}
 
