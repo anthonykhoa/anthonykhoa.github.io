@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Testing</title>
-  </head>
-  <body>
-    <input id="email" type="email" placeholder="Email">
-    <input id="phone" type="tel" placeholder="Phone">
-    <input id="emailOrPhone" type="email" placeholder="Email or Phone">
-    <script>
 
-    </script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Testing</title>
+</head>
+
+<body>
+	<input id="email" type="email" placeholder="Email">
+	<input id="phone" type="tel" placeholder="Phone">
+	<input id="emailOrPhone" type="email" placeholder="Email or Phone">
+	<script>
+		const emailOrPhone = document.getElementById('emailOrPhone');
+		emailOrPhone.addEventListener("keydown", (event) => {
+			const currentType = emailOrPhone.type;
+			const isNumber = !isNaN(event.target.value)
+			if (!isNumber && currentType !== 'email') {
+				emailOrPhone.setAttribute('type', 'email')
+			} else if (isNumber && currentType !== 'tel') {
+				emailOrPhone.setAttribute('type', 'tel')
+			}
+		});
+
+	</script>
+</body>
+
 </html>
